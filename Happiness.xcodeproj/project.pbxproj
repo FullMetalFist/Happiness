@@ -13,6 +13,7 @@
 		7C8983401B083E830073F13E /* HappinessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C89833F1B083E830073F13E /* HappinessTests.swift */; };
 		7C89834A1B083EFB0073F13E /* HappinessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8983491B083EFB0073F13E /* HappinessViewController.swift */; };
 		7C89834C1B083F6B0073F13E /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C89834B1B083F6B0073F13E /* NavigationViewController.swift */; };
+		7CE2E5241B0A40B500A5C621 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2E5231B0A40B500A5C621 /* FaceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		7C89833F1B083E830073F13E /* HappinessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappinessTests.swift; sourceTree = "<group>"; };
 		7C8983491B083EFB0073F13E /* HappinessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HappinessViewController.swift; path = ViewController/HappinessViewController.swift; sourceTree = "<group>"; };
 		7C89834B1B083F6B0073F13E /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationViewController.swift; path = ViewController/NavigationViewController.swift; sourceTree = "<group>"; };
+		7CE2E5231B0A40B500A5C621 /* FaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				7C8983271B083E830073F13E /* Supporting Files */,
 				7C8983491B083EFB0073F13E /* HappinessViewController.swift */,
 				7C89834B1B083F6B0073F13E /* NavigationViewController.swift */,
+				7CE2E5231B0A40B500A5C621 /* FaceView.swift */,
 			);
 			path = Happiness;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				7C89834C1B083F6B0073F13E /* NavigationViewController.swift in Sources */,
 				7C89834A1B083EFB0073F13E /* HappinessViewController.swift in Sources */,
 				7C89832A1B083E830073F13E /* AppDelegate.swift in Sources */,
+				7CE2E5241B0A40B500A5C621 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +405,7 @@
 				7C8983451B083E830073F13E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7C8983461B083E830073F13E /* Build configuration list for PBXNativeTarget "HappinessTests" */ = {
 			isa = XCConfigurationList;
@@ -409,6 +414,7 @@
 				7C8983481B083E830073F13E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,7 +10,7 @@ import UIKit
 
 class HappinessViewController: UIViewController
 {
-    var face: UIView!
+    var face: FaceView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class HappinessViewController: UIViewController
     }
     
     func makeLayout() {
-        face = UIView()
+        face = FaceView()
         face.setTranslatesAutoresizingMaskIntoConstraints(false)
         face.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 1.0, alpha: 1)
 //        face.backgroundColor = UIColor.blueColor()
