@@ -8,9 +8,31 @@
 
 import UIKit
 
-class HappinessViewController: UIViewController
+class HappinessViewController: UIViewController, FaceViewDataSource
 {
-    var face: FaceView!
+    var face: FaceView! {
+        didSet {
+            face.dataSource = self
+        }
+    }
+    var slider: UISlider!
+    var happiness: Int = 15 {
+        // 0 = sad, 100 = ecstatic
+        didSet {
+            happiness = min(max(happiness, 0), 100)
+            println("happiness = \(happiness)")
+            updateUI()
+        }
+    }
+    
+    func updateUI()
+    {
+        face.setNeedsDisplay()
+    }
+    
+    func smilinessForFaceView(sender: FaceView) -> Double? {
+        return Double(happiness - 15) / 50
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +61,8 @@ class HappinessViewController: UIViewController
         let face_constraint_V: Array = NSLayoutConstraint.constraintsWithVisualFormat(face_V, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
         face.addConstraints(face_constraint_H)
         face.addConstraints(face_constraint_V)
+        
+        
         
         // necessary to add constraints to superview
         // use the pipe here
