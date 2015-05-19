@@ -13,6 +13,8 @@ class HappinessViewController: UIViewController, FaceViewDataSource
     var face: FaceView! {
         didSet {
             face.dataSource = self
+            face.addGestureRecognizer(UIPinchGestureRecognizer(target: face, action: "scale:"))
+            face.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "changeHappiness:"))
         }
     }
     var slider: UISlider!
@@ -22,6 +24,24 @@ class HappinessViewController: UIViewController, FaceViewDataSource
             happiness = min(max(happiness, 0), 100)
             println("happiness = \(happiness)")
             updateUI()
+        }
+    }
+    
+    private struct Constants {
+        static let HappinessGestureScale: CGFloat = 4
+    }
+    
+    func changeHappiness(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .Ended: fallthrough
+        case .Changed:
+            let translation = gesture.translationInView(face)
+            let happinessChange = -Int(translation.y / Constants.HappinessGestureScale)
+            if happinessChange != 0 {
+                happiness += happinessChange
+                gesture.setTranslation(CGPointZero, inView: face)
+            }
+        default: break
         }
     }
     
