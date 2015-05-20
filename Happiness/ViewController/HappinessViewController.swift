@@ -68,25 +68,40 @@ class HappinessViewController: UIViewController, FaceViewDataSource
 //        face.backgroundColor = UIColor.blueColor()
         view.addSubview(face)
         
+        slider = UISlider()
+        slider.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.addSubview(slider)
+        
         //-------------------- constraints
         
         // make dictionary for views
-        let viewsDictionary = ["face":face]
+        let viewsDictionary = ["face":face, "slider":slider]
         
         // constraint strings
         let face_H: String! = "H:[face]"
         let face_V: String! = "V:[face]"
+        
+        let slider_H: String! = "H:[slider]"
+        let slider_V: String! = "V:[slider]"
+        
         // sizing constraints
         let face_constraint_H: Array = NSLayoutConstraint.constraintsWithVisualFormat(face_H, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
         let face_constraint_V: Array = NSLayoutConstraint.constraintsWithVisualFormat(face_V, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+        
+        let slider_constraint_H: Array = NSLayoutConstraint.constraintsWithVisualFormat(slider_H, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+        let slider_constraint_V: Array = NSLayoutConstraint.constraintsWithVisualFormat(slider_V, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+        
         face.addConstraints(face_constraint_H)
         face.addConstraints(face_constraint_V)
         
+        slider.addConstraints(slider_constraint_H)
+        slider.addConstraints(slider_constraint_V)
         
         
         // necessary to add constraints to superview
         // use the pipe here
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[face]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[face]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[slider]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[face][slider]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
     }
 }
