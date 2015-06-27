@@ -15,9 +15,11 @@ class HappinessViewController: UIViewController, FaceViewDataSource
             face.dataSource = self
             face.addGestureRecognizer(UIPinchGestureRecognizer(target: face, action: "scale:"))
             face.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "changeHappiness:"))
+            
         }
     }
     var slider: UISlider!
+    
     var happiness: Int = 15 {
         // 0 = sad, 100 = ecstatic
         didSet {
@@ -29,6 +31,7 @@ class HappinessViewController: UIViewController, FaceViewDataSource
     
     private struct Constants {
         static let HappinessGestureScale: CGFloat = 4
+        
     }
     
     func changeHappiness(gesture: UIPanGestureRecognizer) {
@@ -36,6 +39,7 @@ class HappinessViewController: UIViewController, FaceViewDataSource
         case .Ended: fallthrough
         case .Changed:
             let translation = gesture.translationInView(face)
+            
             let happinessChange = -Int(translation.y / Constants.HappinessGestureScale)
             if happinessChange != 0 {
                 happiness += happinessChange
@@ -44,6 +48,26 @@ class HappinessViewController: UIViewController, FaceViewDataSource
         default: break
         }
     }
+    
+    func slideHappiness(slider: UISlider) {
+        
+        let translation = Double(slider.value)
+        let happinessChange = -Double(translation / Double(Constants.HappinessGestureScale))
+        if happinessChange != 0 {
+            happiness += Int(happinessChange)
+        }
+    }
+    
+    func sliderValueChanged(sender: UISlider) {
+        // changes the value of the slider
+        var currentValue = CGFloat(sender.value)
+        
+        happiness = Int(currentValue * 150)
+        
+        println("scale: \(currentValue)")
+    }
+    
+    
     
     func updateUI()
     {
@@ -65,11 +89,11 @@ class HappinessViewController: UIViewController, FaceViewDataSource
         face = FaceView()
         face.setTranslatesAutoresizingMaskIntoConstraints(false)
         face.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 1.0, alpha: 1)
-//        face.backgroundColor = UIColor.blueColor()
         view.addSubview(face)
         
         slider = UISlider()
         slider.setTranslatesAutoresizingMaskIntoConstraints(false)
+        slider.addTarget(self, action: "sliderValueChanged:", forControlEvents: .ValueChanged)
         view.addSubview(slider)
         
         //-------------------- constraints
@@ -94,14 +118,20 @@ class HappinessViewController: UIViewController, FaceViewDataSource
         face.addConstraints(face_constraint_H)
         face.addConstraints(face_constraint_V)
         
+        let spinNumber: CGFloat = CGFloat(M_PI) * 1.5
+        let transform: CGAffineTransform = CGAffineTransformMakeRotation(spinNumber)
+        
+        slider.transform = transform
+        
         slider.addConstraints(slider_constraint_H)
         slider.addConstraints(slider_constraint_V)
         
         
         // necessary to add constraints to superview
         // use the pipe here
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[face]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[slider]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[face][slider]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[face][slider(50)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
+        //view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[slider]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[slider]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[face]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
     }
 }

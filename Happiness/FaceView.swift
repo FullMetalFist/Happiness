@@ -29,13 +29,18 @@ class FaceView: UIView {
     }
     
     weak var dataSource: FaceViewDataSource?
-    
+    // TODO: switch out gesture recognizer
     func scale(gesture: UIPinchGestureRecognizer) {
         if gesture.state == .Changed {
             scale *= gesture.scale
             gesture.scale = 1
         }
     }
+//    func scale(slider: UISlider) {
+//        if slider.value == .Changed {
+//            scale *= slider.value
+//        }
+//    }
     
     private struct Scaling {
         static let FaceRadiusToEyeRadiusRatio: CGFloat = 10
@@ -103,6 +108,4 @@ class FaceView: UIView {
         let smilePath = bezierPathForSmile(smiliness)
         smilePath.stroke()
     }
-    
-
 }
