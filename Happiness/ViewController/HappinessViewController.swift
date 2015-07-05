@@ -129,7 +129,7 @@ class HappinessViewController: UIViewController, FaceViewDataSource
         
         // necessary to add constraints to superview
         // use the pipe here
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[face][slider(50)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[face][slider(90)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
         //view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[slider]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[slider]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[face]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary))
